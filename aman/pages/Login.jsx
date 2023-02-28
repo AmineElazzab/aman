@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, TextInput, StyleSheet,Image } from 'react-native'
 import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
+import m from '../assets/img/login.jpg'
 
 
 
@@ -16,10 +17,42 @@ const Login = () => {
 
     return (
         <View style={styles.container}>
-                {/* <Image source={m} style={{ 
+            <View
+                style={{
+                    marginLeft: 10,
+                }}
+            >
+                <Text
+                    style={{
+                        color: '#112B54',
+                        fontSize: 30,
+                        fontWeight: 'bold',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        textAlign: 'center',
+                    }}
+                >
+                    Login
+                </Text>
+                <Text
+                    style={{
+                        color: 'black',
+                        fontSize: 15,
+                        fontWeight: 'bold',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        textAlign: 'center',
+                        marginTop: 15,
+                        maxWidth: "60%"
+                    }}
+                >
+                    Welcome Back you've been missed!
+                </Text>
+            </View>
+                <Image source={m} style={{ 
                 width: 350,
                 height: 350,
-                }} /> */}
+                }} />
             <TextInput
                 style={styles.input}
                 placeholder="Email"
@@ -42,7 +75,8 @@ const Login = () => {
                 autoCorrect={false}
             />
             <TouchableOpacity
-                onPress={() => loginUser(email, password)}
+                onPress={() => 
+                    navigation.navigate('Home')}
                 style={styles.button}
             >
                 <Text style={styles.buttonTitle}>Login</Text>
@@ -100,7 +134,7 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 50,
-        width: 300,
+        width: 350,
         borderRadius: 10,
         overflow: 'hidden',
         backgroundColor: '#F0F0F0',
@@ -109,12 +143,20 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: '#112B54',
-        width: 300,
+        width: 350,
         height: 50,
         borderRadius: 10,
         alignItems: "center",
         justifyContent: 'center',
         marginBottom: 10,
+        shadowColor:'#112B54',
+        shadowOffset: {
+          width: 0,
+          height: 5,
+        },
+        shadowOpacity: 0.34,
+        shadowRadius: 6.27,
+        elevation: 10,
     },
     buttonTitle: {
         color: 'white',
