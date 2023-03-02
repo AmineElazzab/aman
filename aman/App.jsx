@@ -79,7 +79,7 @@ const App = () => {
             //   },
             // }}
           />
-          {/* <Stack.Screen
+          <Stack.Screen
             name="Home"
             component={Home}
             options={{headerShown: false}}
@@ -94,7 +94,7 @@ const App = () => {
             //     elevation: 25,
             //   },
             // }}
-          /> */}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
