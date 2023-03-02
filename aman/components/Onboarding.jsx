@@ -51,21 +51,43 @@ const OnboardingScreen  = ({ navigation }) => {
         pages={[
             {
                 backgroundColor: "#fff",
-                image: <Image source={require("../assets/img/aman.png")} />,
-                title: "Connect to the World",
-                subtitle: "A New Way To Connect With The World",
+                image: <Image source={require("../assets/img/oerder.png")} 
+                style={{width: 300, height: 300}}
+                />,
+                title: "Order",
+                subtitle: "Order water from your nearest vendor",
             },
             {
                 backgroundColor: "#fff",
-                image: <Image source={require("../assets/img/aman.png")} />,
-                title: "Share Your Favorites",
-                subtitle: "Share Your Thoughts With Similar Kind of People",
+                image: <Image source={require("../assets/img/orderP.png")}
+                style={{width: 300, height: 300}}
+                />,
+                title: "Order Processing",
+                subtitle: "Your order is being processed",
+                },
+            {
+                backgroundColor: "#fff",
+                image: <Image source={require("../assets/img/delivery.png")}
+                style={{width: 300, height: 300}}
+                />,
+                title: "Delivery",
+                subtitle: "Your order is being delivered",
             },
             {
                 backgroundColor: "#fff",
-                image: <Image source={require("../assets/img/aman.png")} />,
-                title: "Become The Star",
-                subtitle: "Let The Spot Light Capture You",
+                image: <Image source={require("../assets/img/receiving.png")}
+                style={{width: 300, height: 300}}
+                />,
+                title: "Receiving",
+                subtitle: "Your order is being received",
+            },
+            {
+                backgroundColor: "#fff",
+                image: <Image source={require("../assets/img/enjoy.png")}
+                style={{width: 300, height: 300}}
+                />,
+                title: "Complete",
+                subtitle: "Your order is complete",
             },
         ]}
     />
