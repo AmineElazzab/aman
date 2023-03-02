@@ -4,7 +4,7 @@ const uniqueValidator = require('mongoose-unique-validator');
 
 const adminSchema = mongoose.Schema(
     {
-        name:
+        fullname:
         {
             type: String,
             required: true
