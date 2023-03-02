@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import { Constants } from "expo-constants";
+
 
 const Header = (props) => {
   return (
