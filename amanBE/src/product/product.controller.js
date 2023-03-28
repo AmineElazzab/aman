@@ -43,20 +43,16 @@ const AddProduct = asyncHandler(async (req, res) => {
         const {
             name,
             price,
-            image,
+            // image,
             description,
             category_id,
             countInStock
         } = req.body;
-        const category = await Category.findById(req.body.category_id);
-        if (!category) {
-            res.status(400);
-            throw new Error('Category not found');
-        }
+
         if (
             !name ||
             !price ||
-            !image ||
+            // !image ||
             !description ||
             !category_id ||
             !countInStock
@@ -69,7 +65,7 @@ const AddProduct = asyncHandler(async (req, res) => {
             Product({
                 name,
                 price,
-                image,
+                // image,
                 description,
                 category: category_id,
                 countInStock
@@ -77,7 +73,7 @@ const AddProduct = asyncHandler(async (req, res) => {
         const product = await Product.findOne({
             name,
             price,
-            image,
+            // image,
             description,
             category_id,
             countInStock
