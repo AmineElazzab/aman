@@ -4,21 +4,53 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  ScrollView,
+  Pressable,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import m from '../assets/img/login.jpg';
-import Header from '../components/Header';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {useMutation} from 'react-query';
+import {CredentialsContext} from '../components/CredentialsContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Register} from '../utils/api';
 
-const Register = () => {
-  const navigation = useNavigation();
+export default function RegisterScreen({navigation}) {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [adress, setAdress] = useState('');
+  const [address, setAddress] = useState('');
   const [city, serCity] = useState('');
+
+  const {storedCredentials, setStoredCredentials} = useContext(CredentialsContext);
+
+  const {mutate, isLoadig} = useMutation(Register, {
+    onSuccess: data => {
+      persisLogin(data);
+      navigation.navigate('Home');
+    },
+    onError: error => {
+      Alert.alert('Error', error.response.data.message);
+    },
+    isLoadig: setTimeout(() => {
+      return isLoadig;
+    }, 1000),
+  });
+
+  const persisLogin = async data => {
+    AsyncStorage.setItem('token', JSON.stringify(data.token))
+    // AsyncStorage.setItem('user', JSON.stringify(data.fullName))
+      .then(() => {
+        setStoredCredentials(data.token);
+        // setStoredCredentials(data.fullName);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
+ 
+
+
+
   return (
       <View
         style={{
@@ -58,13 +90,6 @@ const Register = () => {
             Create an account so you can start ordering your favorite water
           </Text>
         </View>
-        {/* <Image
-        source={m}
-        style={{
-          width: 350,
-          height: 350,
-        }}
-     /> */}
         <TextInput
           style={{
             height: 50,
@@ -93,7 +118,6 @@ const Register = () => {
           }}
           placeholder="Email"
           placeholderTextColor="#aaaaaa"
-          secureTextEntry
           onChangeText={email => setEmail(email)}
           value={email}
           underlineColorAndroid="transparent"
@@ -129,9 +153,8 @@ const Register = () => {
           }}
           placeholder="Adress"
           placeholderTextColor="#aaaaaa"
-          secureTextEntry
-          onChangeText={adress => setAdress(adress)}
-          value={adress}
+          onChangeText={address => setAddress(address)}
+          value={address}
           underlineColorAndroid="transparent"
           autoCapitalize="none"
           autoCorrect={false}
@@ -147,7 +170,6 @@ const Register = () => {
           }}
           placeholder="City"
           placeholderTextColor="#aaaaaa"
-          secureTextEntry
           onChangeText={city => serCity(city)}
           value={city}
           underlineColorAndroid="transparent"
@@ -179,8 +201,10 @@ const Register = () => {
             Login
           </Text>
         </View>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Login')}
+        <Pressable
+          onPress={() => {
+            mutate({fullName, email, password, address, city});
+          }}
           style={{
             height: 50,
             width: 350,
@@ -205,9 +229,10 @@ const Register = () => {
             }}>
             Register
           </Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
-  );
-};
+    );
+}
+  
 
-export default Register;
+
