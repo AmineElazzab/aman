@@ -13,6 +13,10 @@ const app = express();
 
 
 
+
+
+
+
 app.use(cors());
 app.use(express.json());
 
@@ -21,6 +25,10 @@ connectDB();
 // routes
 app.use('/api/auth', require('./auth/auth.route'));
 app.use('/api/admin', require('./admin/admin.route'));
+app.use('/api/category', require('./category/category.route'));
+app.use('/api/product', require('./product/product.route'));
+// app.use('/api/order', require('./order/order.route'));
+
 
 //404
 app.use(notFound);
