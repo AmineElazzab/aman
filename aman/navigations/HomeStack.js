@@ -5,6 +5,7 @@ import Cart from '../pages/Cart';
 import Profile from '../pages/Profile';
 import Order from '../pages/Order';
 import Menu from '../pages/Menu';
+import Adress from '../pages/Adress';
 // import OnboardingScreen from '../components/Onboarding';
 
 
@@ -55,6 +56,20 @@ function App() {
                 options={{
                     headerShown: true
                 }}
+            />
+            <HomeStack.Screen
+                name="Adress"
+                component={Adress}
+                options={{
+                    headerShown: true,
+                    headerStyle: {
+                      backgroundColor: '#112B54',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                      fontWeight: 'bold',
+                    },
+                  }}
             />
         </HomeStack.Navigator>
 
