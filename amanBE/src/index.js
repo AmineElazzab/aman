@@ -28,6 +28,8 @@ app.use('/api/admin', require('./admin/admin.route'));
 app.use('/api/category', require('./category/category.route'));
 app.use('/api/product', require('./product/product.route'));
 // app.use('/api/order', require('./order/order.route'));
+app.use('/api/address', require('./adresse/address.route'));
+app.use('/api/cart', require('./cart/cart.route'));
 
 
 //404
