@@ -16,3 +16,18 @@ const GetUserProfile = asyncHandler(async (req, res) => {
 //update user profile
 const UpdateUser = asyncHandler(async (req, res) => {
 })
+
+
+//get all users
+const GetUsers = asyncHandler(async (req, res) => {
+    const users = await User.find({});
+    res.status(200).json(users);
+})
+
+
+module.exports = {
+    GetUsers,
+    GetUserById,
+    GetUserProfile,
+    UpdateUser,
+}
