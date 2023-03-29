@@ -10,15 +10,12 @@ const CreatUser = asyncHandler(async (req, res) => {
         fullName,
         email,
         password,
-        address,
-        city
+       
     } = req.body;
     if (
         !fullName ||
         !email ||
-        !password ||
-        !address ||
-        !city
+        !password 
     ) {
         res.status(400);
         throw new Error('Please provide all fields');
@@ -40,8 +37,6 @@ const CreatUser = asyncHandler(async (req, res) => {
         fullName,
         email,
         password: hashedPassword,
-        address,
-        city
     });
 
     if (user) {
@@ -49,8 +44,6 @@ const CreatUser = asyncHandler(async (req, res) => {
             _id: user._id,
             fullName: user.fullName,
             email: user.email,
-            address: user.address,
-            city: user.city,
             token: generateToken(user._id),
             message: "User created successfully"
         });
@@ -87,8 +80,6 @@ const AuthUser = asyncHandler(async (req, res) => {
             _id: user._id,
             fullName: user.fullName,
             email: user.email,
-            address: user.address,
-            city: user.city,
             token: generateToken(user._id),
             message: "User logged in successfully"
         });
