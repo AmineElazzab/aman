@@ -20,11 +20,12 @@ const Tabs = () => {
     useContext(CredentialsContext);
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : null}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
-      style={{flex: 1}}>
+    // <KeyboardAvoidingView
+    //   behavior={Platform.OS === 'ios' ? 'padding' : null}
+    //   keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
+    //   style={{flex: 1}}>
       <Tab.Navigator
+        initialRouteName="Home"
         screenOptions={({route}) => ({
           tabBarIcon: ({focused}) => {
             let iconName;
@@ -77,7 +78,7 @@ const Tabs = () => {
           tabBarActiveTintColor: '#20B08E',
           tabBarInactiveTintColor: 'black',
           tabBarStyle: {
-            display: 'flex',
+            // display: 'flex',
             height: 45,
             backgroundColor: '#112B54',
             borderTopLeftRadius: 35,
@@ -128,7 +129,16 @@ const Tabs = () => {
         <Tab.Screen
           name="Shop"
           component={Shop}
-          options={{headerShown: true}}
+          options={{
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: '#112B54',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
         />
         <Tab.Screen
           name="Profile"
@@ -152,7 +162,7 @@ const Tabs = () => {
           />
         )}
       </Tab.Navigator>
-    </KeyboardAvoidingView>
+    // </KeyboardAvoidingView>
   );
 };
 
