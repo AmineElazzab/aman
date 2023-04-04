@@ -5,7 +5,7 @@ const asyncHandler = require('express-async-handler');
 
 //get all products
 const GetProducts = asyncHandler(async (req, res) => {
-    const products = await Product.find({});
+    const products = await Product.find({}).populate("category", "name")
     res.json(products);
 }
 );
@@ -13,7 +13,8 @@ const GetProducts = asyncHandler(async (req, res) => {
 
 //get product by id
 const GetProductById = asyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id).
+        populate('category', 'name');
     if (product) {
         res.json(product);
     }
