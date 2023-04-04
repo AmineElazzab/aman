@@ -7,9 +7,9 @@ const {
     GetAddressByUserId,
     UpdateAddress,
     DeleteAddress
-}= require("./address.controller")
-
-router.post("/addAddress/:id", AddAddress);
+}= require("./address.controller");
+const {auth} = require ('../middleware/jwt.middleware')
+router.post("/addAddress", auth ,AddAddress);
 router.get("/getAllAddresses", GetAllAddresses);
 router.get("/getAddressById/:id", GetAddressById);
 router.get("/getAddressByUserId/:id", GetAddressByUserId);
