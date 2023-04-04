@@ -5,11 +5,15 @@ import {getCategories} from '../utils/api';
 // import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useQuery} from 'react-query';
 
-const Category = () => {
+const Category = ({categoryId}) => {
   const navigation = useNavigation();
 
   //get category from api
-  const {data, isLoading, error} = useQuery('categories', getCategories);
+  const {data, isLoading, error} = useQuery(['categories', categoryId], () =>
+    getCategories(categoryId),
+  );
+
+  // console.log(JSON.stringify(data, 2, null));
 
   if (isLoading) {
     return <Text>Loading...</Text>;
@@ -20,19 +24,22 @@ const Category = () => {
 
   return (
     <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            // backgroundColor: '#112B54',
-            borderRadius: 30,
-            padding: 10,
-          }}>
-    <FlatList
-      data={data}
-      renderItem={({item}) => (
-        
+      style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        // backgroundColor: '#112B54',
+        borderRadius: 30,
+        padding: 10,
+      }}>
+      <FlatList
+        data={data}
+        renderItem={({item}) => (
           <TouchableOpacity
-            onPress={() => navigation.navigate('Shop')}
+            onPress={() =>
+              navigation.navigate('Shop', {
+                param: {categoryId: item._id},
+              })
+            }
             style={{
               marginTop: 10,
               backgroundColor: '#112B54',
@@ -46,7 +53,6 @@ const Category = () => {
               marginBottom: 10,
               justifyContent: 'center',
               alignItems: 'center',
-
             }}>
             <Text
               style={{
@@ -60,12 +66,12 @@ const Category = () => {
               {item.name}
             </Text>
           </TouchableOpacity>
-      )}
-      keyExtractor={item => item.id}
-      horizontal={true}
-      showsHorizontalScrollIndicator={false}
+        )}
+        keyExtractor={item => `${item._id}-${item.index}`}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
       />
-      </View>
+    </View>
   );
 };
 
