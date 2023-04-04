@@ -1,15 +1,23 @@
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {View, Text, Image, TouchableOpacity, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  FlatList,
+  Alert,
+} from 'react-native';
 import {getProducts} from '../utils/api';
 import {useQuery} from 'react-query';
 
-
 function Product() {
   const navigation = useNavigation();
-  
+
   //get product from api
   const {data, isLoading, error} = useQuery('products', getProducts);
+
+  // console.log(JSON.stringify(data, 2, null));
 
   if (isLoading) {
     return <Text>Loading...</Text>;
@@ -24,12 +32,18 @@ function Product() {
         data={data}
         renderItem={({item}) => (
           <TouchableOpacity
-            onPress={() => navigation.navigate('ProductDetail')}
+            keyExtractor={item => `${item._id}-${item.index}`}
+            onPress={() =>
+              navigation.navigate('App', {
+                screen: 'Details',
+                params: {productId: item._id},
+              })
+            }
             style={{
               marginTop: 10,
               backgroundColor: '#FFF',
-              height: 170,
-              width: 150,
+              height: 188,
+              width: 188,
               elevation: 2,
               borderRadius: 30,
               // padding: 15,
@@ -40,7 +54,9 @@ function Product() {
               alignItems: 'center',
             }}>
             <Image
-              source={{uri: item.image}}
+              source={{
+                uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdLDGIy5xG5Usvoc2b2gJlKMbVaq37tyfvWA&usqp=CAU',
+              }}
               style={{
                 width: 100,
                 height: 100,
@@ -77,7 +93,6 @@ function Product() {
       />
     </View>
   );
-  
 }
 
 export default Product;
