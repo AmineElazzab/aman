@@ -6,7 +6,7 @@ import {
   TextInput,
   RefreshControl,
   Button,
-  Pressable
+  Pressable,
 } from 'react-native';
 import React, {useCallback, useState, useContext} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -14,7 +14,7 @@ import Category from '../components/Category';
 import Product from '../components/Product';
 import {CredentialsContext} from '../components/CredentialsContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import home from '../assets/img/home.png';
 
 //get user fullName
@@ -24,7 +24,7 @@ const Home = () => {
   const [refreshing, setRefreshing] = useState(false);
   const {storedCredentials, setStoredCredentials} =
     useContext(CredentialsContext);
-    const navigation = useNavigation();
+  const navigation = useNavigation();
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -33,16 +33,15 @@ const Home = () => {
     }, 2000);
   }, []);
 
-//logout
-const handleLogout = () => {
-  AsyncStorage.removeItem('token').then(() => {
-    setStoredCredentials(null)
-    navigation.navigate('Auth')
-  })
-  .catch((error) => console.log(error)
-  )
-}
-
+  //logout
+  const handleLogout = () => {
+    AsyncStorage.removeItem('token')
+      .then(() => {
+        setStoredCredentials(null);
+        navigation.navigate('Auth');
+      })
+      .catch(error => console.log(error));
+  };
 
   return (
     <ScrollView
@@ -77,7 +76,7 @@ const handleLogout = () => {
           : null
 
         } */}
-         <View
+        {/* <View
           style={{
             alignItems: 'flex-end',
             backgroundColor: '#112B54',
@@ -106,7 +105,7 @@ const handleLogout = () => {
                 <Icon name="ios-exit-outline" size={20} color="#fff" />
             </Pressable>
           
-        </View>
+        </View> */}
       </View>
       <View
         style={{
