@@ -14,7 +14,7 @@ const GetProducts = asyncHandler(async (req, res) => {
 //get product by id
 const GetProductById = asyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id).
-        populate('category', 'name');
+        populate('category');
     if (product) {
         res.json(product);
     }
@@ -27,7 +27,8 @@ const GetProductById = asyncHandler(async (req, res) => {
 
 //get products by category
 const GetProductsByCategory = asyncHandler(async (req, res) => {
-    const products = await Product.find({ category: req.params.id });
+    const products = await Product.find({ category: req.params.id 
+    }).populate('category');
     if (products) {
         res.json(products);
     }
