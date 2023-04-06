@@ -6,9 +6,11 @@ const {
     DeleteCartItem
 } = require("./cart.controller")
 
+const { auth } = require('../middleware/jwt.middleware')
 
-router.get("/getCartItems", GetCartItems);
-router.post("/addToCart", AddToCart);
+
+router.get("/getCartItems", auth, GetCartItems);
+router.post("/addToCart/:id", auth, AddToCart);
 router.delete("/deleteCartItem/:id", DeleteCartItem);
 
 module.exports = router;
