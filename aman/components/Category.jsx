@@ -5,12 +5,13 @@ import {getCategories} from '../utils/api';
 // import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useQuery} from 'react-query';
 
-const Category = ({categoryId}) => {
+const Category = () => {
   const navigation = useNavigation();
 
   //get category from api
-  const {data, isLoading, error} = useQuery(['categories', categoryId], () =>
-    getCategories(categoryId),
+  const {data, isLoading, error} = useQuery('categories', 
+    getCategories,
+    // console.log(categoryId)
   );
 
   // console.log(JSON.stringify(data, 2, null));
@@ -21,7 +22,7 @@ const Category = ({categoryId}) => {
   if (error) {
     return <Text>Error: {error.message}</Text>;
   }
-
+  
   return (
     <View
       style={{
@@ -35,8 +36,10 @@ const Category = ({categoryId}) => {
         data={data}
         renderItem={({item}) => (
           <TouchableOpacity
+          keyExtractor={item => `${item._id}-${item.index}`}
             onPress={() =>
-              navigation.navigate('Shop', {
+              navigation.navigate('App', {
+                screen: 'ProductbyCategory',
                 param: {categoryId: item._id},
               })
             }
