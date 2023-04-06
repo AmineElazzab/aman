@@ -8,6 +8,8 @@ const {
         UpdateProduct,
         DeleteProduct,
 }= require("./product.controller")
+const {auth} = require('../middleware/jwt.middleware')
+
 
 router.get("/getProducts", GetProducts);
 router.get("/getProductById/:id", GetProductById);
