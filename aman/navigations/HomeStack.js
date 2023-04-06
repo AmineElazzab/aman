@@ -6,6 +6,8 @@ import Profile from '../pages/Profile';
 import Order from '../pages/Order';
 import Menu from '../pages/Menu';
 import Adress from '../pages/Adress';
+import Details from '../pages/Details';
+import ProductbyCategory from '../pages/ProductbyCategory'
 // import OnboardingScreen from '../components/Onboarding';
 
 
@@ -71,6 +73,35 @@ function App() {
                     },
                   }}
             />
+            <HomeStack.Screen
+                name="Details"
+                component={Details}
+                options={{
+                    headerShown: true,
+                    headerStyle: {
+                      backgroundColor: '#112B54',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                      fontWeight: 'bold',
+                    },
+                  }}
+            />
+            <HomeStack.Screen
+                name="ProductbyCategory"
+                component={ProductbyCategory}
+                options={{
+                    headerShown: true,
+                    headerStyle: {
+                      backgroundColor: '#112B54',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                      fontWeight: 'bold',
+                    },
+                  }}
+            />
+
         </HomeStack.Navigator>
 
     )
