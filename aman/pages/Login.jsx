@@ -25,7 +25,11 @@ export default function LoginSecrin({navigation}) {
   const {mutate, isLoadig} = useMutation(Login, {
     onSuccess: data => {
       persisLogin(data);
-      navigation.navigate('Home');
+      // console.log(data)
+      navigation.navigate('Nav',
+      {
+        screen: 'Home',
+        });
     },
     onError: error => {
       Alert.alert('Error', error.response.data.message);
@@ -36,17 +40,31 @@ export default function LoginSecrin({navigation}) {
   });
 
   const persisLogin = async data => {
-    AsyncStorage.setItem('token', JSON.stringify(data.token))
-    AsyncStorage.setItem('user', JSON.stringify(data.fullName))
+    AsyncStorage.setItem('token', (data.token))
+    // AsyncStorage.setItem('fullName',(data.fullname))
       .then(() => {
         setStoredCredentials(data.token);
-        setStoredCredentials(data.fullName);
-        console.log(data.fullName);
+        // setStoredCredentials(data.fullname);
+        // console.log(storedCredentials);
       })
       .catch(error => {
         console.error(error);
       });
   };
+  // const persistLogin = async data => {
+  //   await AsyncStorage.multiSet([
+  //     ['token', data.token],
+  //     ['fullName', data.result.name],
+  //     ['userId', data.result._id],
+  //   ])
+  //     .then(() => {
+  //       setStoredCredentials(data.token, data.result.name, data.result._id);
+  //       // navigation.navigate('Nav', {screen: 'Home'});
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // };
 
 
   return (
