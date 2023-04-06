@@ -222,7 +222,7 @@ const User = () => {
             marginLeft: 10,
             color: '#BC3131',
           }}>
-          Address
+          Logout
         </Text>
       </View>
       </Pressable>
