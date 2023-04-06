@@ -3,6 +3,7 @@ import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import {GetProductById} from '../utils/api';
 import {useQuery} from 'react-query';
 import {useNavigation} from '@react-navigation/native';
+import {addToCart} from '../utils/api';
 
 const Details = ({route}) => {
   const {productId} = route.params;
@@ -15,7 +16,7 @@ const Details = ({route}) => {
     {
       onSuccess: data => {
         setProduct(data);
-        // console.log(data)
+        console.log(data);
       },
     },
   );
@@ -26,6 +27,13 @@ const Details = ({route}) => {
   if (error) {
     return <Text>Error: {error.message}</Text>;
   }
+
+  //add to cart by product id
+  const handleAddToCart = async () => {
+    const dataa = await addToCart(productId);
+    console.log(dataa);
+  };
+ 
 
   return (
     <ScrollView
@@ -120,13 +128,11 @@ const Details = ({route}) => {
           marginTop: 100,
           flexDirection: 'column',
         }}>
+          <TouchableOpacity>
+            
+          </TouchableOpacity>
         <TouchableOpacity
-          onPress={() =>
-            navigation.navigate('Nav', {
-              screen: 'Cart',
-              params: {id: product.id},
-            })
-          }
+          onPress={handleAddToCart}
           style={{
             backgroundColor: '#000',
             height: 50,
