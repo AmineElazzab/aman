@@ -13,11 +13,13 @@ import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {getCartItems} from '../utils/api';
 import EmptyCart from '../components/EmptyCart';
+// import Chekout from '../components/Chekout';
 
 const Cart = () => {
   //get cart
   const [refreshing, setRefreshing] = useState(false);
   const [cart, setCart] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
   const navigation = useNavigation();
 
   const {data, isLoading, error, refetch} = useQuery(
@@ -30,6 +32,17 @@ const Cart = () => {
       },
     },
   );
+  const calculateTotalPrice = useCallback(() => {
+    let totalPrice = 0;
+    cart.forEach(item => {
+      totalPrice += item.product.price;
+    });
+    setTotalPrice(totalPrice);
+  }, [cart]);
+
+  useEffect(() => {
+    calculateTotalPrice();
+  }, [cart, calculateTotalPrice]);
 
   if (isLoading) {
     return <Text>Loading...</Text>;
@@ -38,12 +51,50 @@ const Cart = () => {
     return <Text>Error: {error.message}</Text>;
   }
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
-      refetch();
-    });
-    return unsubscribe;
-  }, [navigation]);
+  // useEffect(() => {
+  //   const unsubscribe = navigation.addListener('focus', () => {
+  //     refetch();
+  //   });
+  //   return unsubscribe;
+  // }, [navigation]);
+
+  //quantity
+  // const [quantity, setQuantity] = useState(1);
+
+  //setQuantity
+  // const Quantity = useCallback(() => {
+  //   if (quantity > 1) {
+  //     setQuantity(quantity - 1);
+  //   }
+  // }, [quantity]);
+
+  // const Quantity1 = useCallback(() => {
+  //   setQuantity(quantity + 1);
+  // }, [quantity]);
+
+  //chekout
+  // const checkout = useCallback(() => {
+  //   navigation.navigate('Checkout');
+  // }, []);
+
+  // DeleteCartItem
+  const DeleteCartItem = id => {
+    fetch(`http://192.168.9.20:5000/api/cart/deleteCartItem/${id}`, {
+      method: 'DELETE',
+    })
+      .then(res => res.json())
+      .then(result => {
+        const remaining = cart.filter(item => item._id !== result._id);
+        setCart(remaining);
+        console.log(
+          // 'DeleteCartItem',
+          result,
+        );
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -51,8 +102,6 @@ const Cart = () => {
       setRefreshing(false);
     }, 2000);
   }, []);
-
-  
 
   return (
     <ScrollView
@@ -69,97 +118,127 @@ const Cart = () => {
         marginBottom: 40,
       }}>
       {cart?.length > 0 ? (
-        cart.map(item => (
-          <View
-            key={item._id}
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              padding: 10,
-              backgroundColor: '#fff',
-              marginVertical: 5,
-            }}>
-            <Image
-              source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdLDGIy5xG5Usvoc2b2gJlKMbVaq37tyfvWA&usqp=CAU'}}
-              style={{
-                width: 100,
-                height: 100,
-                borderRadius: 10,
-              }}
-            />
+        cart.map((item , i) => (
+          <>
             <View
+              key={item._id}
               style={{
-                flex: 1,
-                marginHorizontal: 10,
-              }}>
-              <Text
-                style={{
-                  fontSize: 18,
-                  fontWeight: 'bold',
-                  color: '#000'
-                }}>
-                {item.product.name}
-              </Text>
-              <Text
-                style={{
-                  fontSize: 16,
-                  fontWeight: 'bold',
-                  color: '#00b894',
-                }}>
-                ${item.product.price}
-              </Text>
-              <Text
-                style={{
-                  fontSize: 16,
-                  fontWeight: 'bold',
-                  color: '#636e72',
-                }}>
-                {item.product.description}
-              </Text>
-            </View>
-            <View
-              style={{
-                justifyContent: 'center',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
                 alignItems: 'center',
+                padding: 10,
+                backgroundColor: '#fff',
+                marginVertical: 5,
               }}>
-              <TouchableOpacity
+              <Image
+                source={{
+                  uri: `http://192.168.9.20:5000/` + item.product?.image,
+                }}
                 style={{
-                  width: 40,
-                  height: 40,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backgroundColor: '#00b894',
+                  width: 100,
+                  height: 100,
                   borderRadius: 10,
-                }}>
-                <Icon name="add" size={30} color="#fff" />
-              </TouchableOpacity>
-              <Text
+                }}
+              />
+              <View
                 style={{
-                  fontSize: 18,
-                  fontWeight: 'bold',
-                  marginVertical: 5,
+                  flex: 1,
+                  marginHorizontal: 10,
                 }}>
-                {item.quantity}
-              </Text>
-              <TouchableOpacity
+                <Text
+                  style={{
+                    fontSize: 18,
+                    fontWeight: 'bold',
+                    color: '#000',
+                  }}>
+                  {item.product?.name}
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontWeight: 'bold',
+                    color: '#00b894',
+                  }}>
+                  ${item.product?.price}
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontWeight: 'bold',
+                    color: '#636e72',
+                  }}>
+                  {item.product?.description}
+                </Text>
+              </View>
+              <View
                 style={{
-                  width: 40,
-                  height: 40,
-                  justifyContent: 'center',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
                   alignItems: 'center',
-                  backgroundColor: '#00b894',
-                  borderRadius: 10,
                 }}>
-                <Icon name="remove" size={30} color="#fff" />
-              </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    //DeleteCartItem
+                    DeleteCartItem(item._id);
+                  }}>
+                  <Icon name="trash" size={30} color="#d63031" />
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
+         
+         {
+          
+          (i === cart.length - 1) ?
+          <View style={{alignItems: 'center'}}>
+          <Text style={{fontSize: 24, fontWeight: 'bold'}}>
+            Total Price: ${totalPrice.toFixed(2)}
+          </Text>
+          <TouchableOpacity
+            style={{
+              backgroundColor: '#00b894',
+              paddingVertical: 10,
+              paddingHorizontal: 20,
+              borderRadius: 10,
+              marginTop: 10,
+            }}
+            onPress={() => {
+              navigation.navigate('Checkout');
+            }
+            }>
+            <Text style={{color: '#fff', fontSize: 18}}>Checkout</Text>
+          </TouchableOpacity>
+        </View>
+        :null
+         }
+           
+           {/* {(1 === 1)? 
+             
+                <View style={{alignItems: 'center'}}>
+                      <Text style={{fontSize: 24, fontWeight: 'bold'}}>
+                        Total Price: ${totalPrice.toFixed(2)}
+                      </Text>
+                      <TouchableOpacity
+                        style={{
+                          backgroundColor: '#00b894',
+                          paddingVertical: 10,
+                          paddingHorizontal: 20,
+                          borderRadius: 10,
+                          marginTop: 10,
+                        }}>
+                        <Text style={{color: '#fff', fontSize: 18}}>Checkout</Text>
+                      </TouchableOpacity>
+                    </View>
+              
+             :null
+          } */}
+          </>
         ))
       ) : (
         <EmptyCart />
       )}
     </ScrollView>
+
+    // <EmptyCart/>
   );
 };
 
