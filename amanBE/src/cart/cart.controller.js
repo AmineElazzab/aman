@@ -21,7 +21,7 @@ const GetCartItems = asyncHandler(async (req, res) => {
 // const AddToCart = asyncHandler(async (req, res) => {
 //     try{
 //         const {productId, quantity} = req.body;
-//         const cartItem = await Cart.findOne({user: req.user._id, product: productId});
+//         const cartItem = await Cart.findOne({product: productId});
 //         if(cartItem){
 //             const updatedQuantity = cartItem.quantity + Number(quantity);
 //             cartItem.quantity = updatedQuantity;
@@ -44,8 +44,31 @@ const GetCartItems = asyncHandler(async (req, res) => {
 // );
 
 const AddToCart = asyncHandler(async (req, res) => {
-    // const
-        // { quantity } = req.body
+//     const {quantity } = req.body;
+//     const productId = req.params.id;
+//  const cartItem = await Cart.findOne({product: productId});
+//     if(cartItem){
+//         const updatedQuantity = cartItem.quantity + Number(quantity);
+//         cartItem.quantity = updatedQuantity;
+//         await cartItem.save();
+//         res.json(cartItem);
+//     }
+//     else{
+//         const cart = await Cart.create({
+//             user: req.userId,
+//             product: productId,
+//             quantity: quantity
+//         });
+//         res.json(cart);
+//     }
+// }
+// );
+
+
+
+
+
+    // const quantity  = req.body
     const productId = req.params.id;
     const product = await Product.findById(productId)
     if (product) {
