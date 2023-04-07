@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 5000;
 const connectDB = require('./config/db');
 const { errorHandler } = require('./middleware/error.middleware');
 const { notFound } = require('./middleware/route.middleware');
+const router = require('./router');
 
 
 const app = express();
@@ -27,10 +28,11 @@ app.use('/api/auth', require('./auth/auth.route'));
 app.use('/api/admin', require('./admin/admin.route'));
 app.use('/api/category', require('./category/category.route'));
 app.use('/api/product', require('./product/product.route'));
-// app.use('/api/order', require('./order/order.route'));
+app.use('/api/order', require('./order/order.route'));
 app.use('/api/address', require('./adresse/address.route'));
 app.use('/api/cart', require('./cart/cart.route'));
 
+app.use("/src/uploads", router)
 
 //404
 app.use(notFound);
