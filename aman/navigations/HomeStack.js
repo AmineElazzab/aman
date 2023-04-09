@@ -8,6 +8,9 @@ import Menu from '../pages/Menu';
 import Adress from '../pages/Adress';
 import Details from '../pages/Details';
 import ProductbyCategory from '../pages/ProductbyCategory'
+import About from '../pages/About'
+import Contact from '../pages/Contact'
+import TaP from '../pages/TaP'
 // import OnboardingScreen from '../components/Onboarding';
 
 
@@ -49,7 +52,7 @@ function App() {
                 name="Order"
                 component={Order}
                 options={{
-                    headerShown: true
+                    headerShown: false
                 }}
             />
             <HomeStack.Screen
@@ -100,6 +103,27 @@ function App() {
                       fontWeight: 'bold',
                     },
                   }}
+            />
+            <HomeStack.Screen
+                name="About"
+                component={About}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <HomeStack.Screen
+                name="Contact"
+                component={Contact}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <HomeStack.Screen
+                name="TaP"
+                component={TaP}
+                options={{
+                    headerShown: false
+                }}
             />
 
         </HomeStack.Navigator>
