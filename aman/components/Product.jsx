@@ -26,6 +26,13 @@ function Product() {
     return <Text>Error: {error.message}</Text>;
   }
 
+  const image = (string) => {
+    let str = string;
+   return str.replace(/\\/g, "/");
+  };
+
+  
+
   return (
     <View>
       <FlatList
@@ -54,14 +61,12 @@ function Product() {
               alignItems: 'center',
             }}>
             <Image
-              source={{
-                uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdLDGIy5xG5Usvoc2b2gJlKMbVaq37tyfvWA&usqp=CAU',
-              }}
+              source={{uri: `http://192.168.9.20:5000/`+ image(item.image)}}
               style={{
-                width: 100,
-                height: 100,
-                borderRadius: 50,
-                marginTop: 10,
+                width: 150,
+                height: 150,
+                borderRadius: 30,
+                // marginTop: 10,
               }}
             />
             <Text

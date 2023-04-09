@@ -97,28 +97,16 @@ const Tabs = () => {
           name="Cart"
           component={Cart}
           options={{
-            headerShown: true,
-            headerStyle: {
-              backgroundColor: '#112B54',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
+            headerShown: false,
+            
           }}
         />
         <Tab.Screen
           name="Order"
           component={Order}
           options={{
-            headerShown: true,
-            headerStyle: {
-              backgroundColor: '#112B54',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
+            headerShown: false,
+            
           }}
         />
         <Tab.Screen
@@ -130,28 +118,15 @@ const Tabs = () => {
           name="Shop"
           component={Shop}
           options={{
-            headerShown: true,
-            headerStyle: {
-              backgroundColor: '#112B54',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}
-        />
+            headerShown: false,
+            
+          }}        />
         <Tab.Screen
           name="Profile"
           component={Profile}
           options={{
-            headerShown: true,
-            headerStyle: {
-              backgroundColor: '#112B54',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
+            headerShown: false,
+            
           }}
         />
         {!storedCredentials && (
