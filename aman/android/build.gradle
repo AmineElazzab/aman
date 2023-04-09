@@ -1,5 +1,12 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+project.ext.vectoricons = [
+    iconFontNames: [ 'Ionicons.ttf', 'EvilIcons.ttf' ] // Name of the font files you want to copy
+]
+
+// apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
+
 buildscript {
     ext {
         buildToolsVersion = "33.0.0"
