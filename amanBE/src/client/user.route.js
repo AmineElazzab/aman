@@ -5,10 +5,12 @@ const {
     GetUserById,
     GetUserProfile,
     UpdateUser,
-}= require("./user.controller")
+}= require("./user.controller");
+
+const {auth} = require('../middleware/jwt.middleware')
 
 router.get("/getUsers", GetUsers);
-router.get("/getUserById/:id", GetUserById);
+router.get("/getUserById", auth, GetUserById);
 router.get("/getUserProfile", GetUserProfile);
 router.put("/updateUser", UpdateUser);
 
