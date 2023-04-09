@@ -26,19 +26,30 @@ const GetOrderById = asyncHandler(async (req, res) => {
 
 //get order by user id
 const GetOrderByUserId = asyncHandler(async (req, res) => {
-    const user = req.params.id
-    const order = await Order.find({user}).populate(
-        'product'
-    )
-    if (order) {
-        res.json(order);
+    try{
+        const order = await Order.find({user: req.userId})
+        .populate('product')
+        .populate('user');
+        res.status(200).json(order);
     }
-    else {
-        res.status(404);
-        throw new Error('Order not found');
+    catch(err){
+        res.status(404).json({message: err.message});
     }
 }
 );
+
+//     const order = await Order.find({user : req.userId}).populate(
+//         'product'
+//     )
+//     if (order) {
+//         res.json(order);
+//     }
+//     else {
+//         res.status(404);
+//         throw new Error('Order not found');
+//     }
+// }
+// );
 
 //add order by user id and product id
 const AddOrder = asyncHandler(async (req, res) => {
@@ -49,10 +60,7 @@ const AddOrder = asyncHandler(async (req, res) => {
             user: req.userId,
             cart: cartId,
             product: cart.product,
-            quantity: req.body.quantity,
-            shippingAddress: req.body.shippingAddress,
-            city:req.body.city,
-            postalCode: req.body.postalCode,
+            
         });
         res.json(order);
     }

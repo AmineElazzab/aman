@@ -19,24 +19,30 @@ const orderSchema = mongoose.Schema(
             ref: 'Product',
             required: true
         },
-        quantity:
+        cart:
         {
-            type: Number,
+            type: mongoose.Schema.ObjectId,
+            ref: 'Cart',
             required: true
         },
-        shippingAddress:
-        {
-            type: String,
-            required: true
-        },
-        city:{
-            type: String,
-            required: true
-        },
-        postalCode:{
-            type: String,
-            required: true
-        },
+        // quantity:
+        // {
+        //     type: Number,
+        //     required: true
+        // },
+        // shippingAddress:
+        // {
+        //     type: String,
+        //     required: true
+        // },
+        // city:{
+        //     type: String,
+        //     required: true
+        // },
+        // postalCode:{
+        //     type: String,
+        //     required: true
+        // },
        
     },
     {

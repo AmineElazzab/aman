@@ -11,10 +11,10 @@ const {
 const { auth } = require('../middleware/jwt.middleware')
 
 
-router.get("/addOrder/:id", auth, AddOrder);
+router.post("/addOrder/:id", auth, AddOrder);
 router.get("/getOrders", GetOrders);
 router.get("/getOrderById/:id", auth, GetOrderById);
-router.get("/getOrderByUserId/:id", GetOrderByUserId);
+router.get("/getOrderByUserId",auth, GetOrderByUserId);
 router.delete("/deleteOrder/:id", DeleteOrder);
 
 module.exports = router;
