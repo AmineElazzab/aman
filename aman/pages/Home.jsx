@@ -254,6 +254,8 @@ const Home = () => {
           width: '100%',
           alignItems: 'center',
           paddingHorizontal: 5,
+          justifyContent: 'space-between',
+          marginBottom:50
         }}>
         <Product />
       </View>

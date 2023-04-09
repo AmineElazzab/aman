@@ -30,97 +30,7 @@ const User = () => {
   };
 
   return (
-    // <ScrollView
-    //   showsVerticalScrollIndicator={false}
-    //   style={{backgroundColor: '#F0F4F9', paddingHorizontal: 5}}>
-    //   <View
-    //     style={{
-    //       flexDirection: 'row',
-    //       justifyContent: 'space-between',
-    //       alignItems: 'center',
-    //       marginTop: 20,
-    //       padding: 10,
-    //     }}>
-    //     <View style={{flexDirection: 'row', alignItems: 'center'}}>
-    //       <Icon
-    //         name="person-circle-outline"
-    //         size={50}
-    //         color="#000"
-    //         style={{marginRight: 10}}
-    //       />
-    //       <View style={{marginLeft: 10}}>
-    //         <Text style={{fontSize: 18, fontWeight: 'bold'}}>{fullName}</Text>
-
-    //       </View>
-    //     </View>
-    //     <Pressable onPress={handleLogout}>
-    //       <Icon name="log-out-outline" size={30} color="#000" />
-    //     </Pressable>
-    //   </View>
-    //   <View
-    //     style={{
-    //       flexDirection: 'row',
-    //       justifyContent: 'space-between',
-    //       alignItems: 'center',
-    //       marginTop: 20,
-    //       padding: 10,
-    //     }}>
-    //     <View style={{flexDirection: 'row', alignItems: 'center'}}>
-    //       <Icon
-    //         name="mail-outline"
-    //         size={50}
-    //         color="#000"
-    //         style={{marginRight: 10}}
-    //       />
-    //       <View style={{marginLeft: 10}}>
-    //         <Text style={{fontSize: 18, fontWeight: 'bold'}}>Email</Text>
-    //         <Text style={{fontSize: 15, color: '#000'}}>Email</Text>
-    //       </View>
-    //     </View>
-    //   </View>
-    //   <View
-    //     style={{
-    //       flexDirection: 'row',
-    //       justifyContent: 'space-between',
-    //       alignItems: 'center',
-    //       marginTop: 20,
-    //       padding: 10,
-    //     }}>
-    //     <View style={{flexDirection: 'row', alignItems: 'center'}}>
-    //       <Icon
-    //         name="call-outline"
-    //         size={50}
-    //         color="#000"
-    //         style={{marginRight: 10}}
-    //       />
-    //       <View style={{marginLeft: 10}}>
-    //         <Text style={{fontSize: 18, fontWeight: 'bold'}}>Phone</Text>
-    //         <Text style={{fontSize: 15, color: '#000'}}>Phone</Text>
-    //       </View>
-    //     </View>
-    //   </View>
-    //   <View
-    //     style={{
-    //       flexDirection: 'row',
-    //       justifyContent: 'space-between',
-    //       alignItems: 'center',
-    //       marginTop: 20,
-    //       padding: 10,
-    //     }}>
-    //     <View style={{flexDirection: 'row', alignItems: 'center'}}>
-    //       <Icon
-    //         name="location-outline"
-    //         size={50}
-    //         color="#000"
-    //         style={{marginRight: 10}}
-    //       />
-    //       <View style={{marginLeft: 10}}>
-    //         <Text style={{fontSize: 18, fontWeight: 'bold'}}>Address</Text>
-    //         <Text style={{fontSize: 15, color: '#000'}}>Address</Text>
-    //       </View>
-    //     </View>
-    //   </View>
-    // </ScrollView>
+   
 
     <View
       style={{
@@ -133,7 +43,7 @@ const User = () => {
       }}>
         <Pressable
             onPress={() => navigation.navigate("App",
-            {screen: "Adress"})}
+            {screen: "TaP"})}
           style={{
             flexDirection: 'row',
             alignItems: 'center',
@@ -164,14 +74,102 @@ const User = () => {
             // marginLeft: 10,
           }}>
           <Icon
-            name="location-outline"
+            name="newspaper-outline"
             size={25}
             color="#fff"
             // style={{marginRight: 10}}
           />
         </View>
         <Text style={{fontSize: 18, fontWeight: 'bold', marginLeft: 10}}>
-          Address
+          Terms and Policy
+        </Text>
+      </View>
+      </Pressable>
+      <Pressable
+            onPress={() => navigation.navigate("App",
+            {screen: "About"})}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          // justifyContent: 'space-between',
+          alignItems: 'center',
+          marginTop: 20,
+          padding: 10,
+          width: '95%',
+          height: 70,
+          backgroundColor: '#fff',
+          flex: 0,
+          borderRadius: 10,
+          borderColor: 'gray',
+          borderWidth: 0.5,
+        }}>
+        <View
+          style={{
+            width: 40,
+            height: 40,
+            backgroundColor: '#112B54',
+            borderRadius: 10,
+            justifyContent: 'center',
+            alignItems: 'center',
+            // marginLeft: 10,
+          }}>
+          <Icon
+            name="alert-circle-outline"
+            size={25}
+            color="#fff"
+            // style={{marginRight: 10}}
+          />
+        </View>
+        <Text style={{fontSize: 18, fontWeight: 'bold', marginLeft: 10}}>
+         About
+        </Text>
+      </View>
+      </Pressable>
+      <Pressable
+            onPress={() => navigation.navigate("App",
+            {screen: "About"})}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          // justifyContent: 'space-between',
+          alignItems: 'center',
+          marginTop: 20,
+          padding: 10,
+          width: '95%',
+          height: 70,
+          backgroundColor: '#fff',
+          flex: 0,
+          borderRadius: 10,
+          borderColor: 'gray',
+          borderWidth: 0.5,
+        }}>
+        <View
+          style={{
+            width: 40,
+            height: 40,
+            backgroundColor: '#112B54',
+            borderRadius: 10,
+            justifyContent: 'center',
+            alignItems: 'center',
+            // marginLeft: 10,
+          }}>
+          <Icon
+            name="call-outline"
+            size={25}
+            color="#fff"
+            // style={{marginRight: 10}}
+          />
+        </View>
+        <Text style={{fontSize: 18, fontWeight: 'bold', marginLeft: 10}}>
+         Contact
         </Text>
       </View>
       </Pressable>

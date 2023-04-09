@@ -7,16 +7,22 @@ import {
   ScrollView,
   FlatList,
   RefreshControl,
+  ToastAndroid
 } from 'react-native';
-import {useQuery} from 'react-query';
+import {useQuery , useMutation} from 'react-query';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {getCartItems} from '../utils/api';
+import {getCartItems , addOrder} from '../utils/api';
 import EmptyCart from '../components/EmptyCart';
 // import Chekout from '../components/Chekout';
 
-const Cart = () => {
+
   //get cart
+  const Cart = ({route}) => {
+  //   if (!route || !route.params) {
+  //     return null; // or show an error message
+  //   }
+  // const {cartId} = route.params;
   const [refreshing, setRefreshing] = useState(false);
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -44,42 +50,10 @@ const Cart = () => {
     calculateTotalPrice();
   }, [cart, calculateTotalPrice]);
 
-  if (isLoading) {
-    return <Text>Loading...</Text>;
-  }
-  if (error) {
-    return <Text>Error: {error.message}</Text>;
-  }
-
-  // useEffect(() => {
-  //   const unsubscribe = navigation.addListener('focus', () => {
-  //     refetch();
-  //   });
-  //   return unsubscribe;
-  // }, [navigation]);
-
-  //quantity
-  // const [quantity, setQuantity] = useState(1);
-
-  //setQuantity
-  // const Quantity = useCallback(() => {
-  //   if (quantity > 1) {
-  //     setQuantity(quantity - 1);
-  //   }
-  // }, [quantity]);
-
-  // const Quantity1 = useCallback(() => {
-  //   setQuantity(quantity + 1);
-  // }, [quantity]);
-
-  //chekout
-  // const checkout = useCallback(() => {
-  //   navigation.navigate('Checkout');
-  // }, []);
-
+ 
   // DeleteCartItem
   const DeleteCartItem = id => {
-    fetch(`http://192.168.9.20:5000/api/cart/deleteCartItem/${id}`, {
+    fetch(`http://192.168.1.104:5000/api/cart/deleteCartItem/${id}`, {
       method: 'DELETE',
     })
       .then(res => res.json())
@@ -95,6 +69,19 @@ const Cart = () => {
         console.log(err);
       });
   };
+
+  //add order
+const handleAddToOrder = async () => {
+    try {
+      const data = await addOrder();
+      console.log(data);
+      ToastAndroid.show('Order Placed', ToastAndroid.SHORT);
+      navigation.navigate('Order');
+    } catch (error) {
+      console.log(error);
+    }
+}
+
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -117,6 +104,24 @@ const Cart = () => {
         flex: 1,
         marginBottom: 40,
       }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: 10,
+            backgroundColor: '#112B54',
+            width: '100%',
+          }}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Icon name="arrow-back" size={25} 
+            color="#fff"
+            />
+          </TouchableOpacity>
+          <Text style={{fontSize: 20, fontWeight: 'bold', color:"#fff"}}>My Cart</Text>
+          <View />
+
+        </View>
       {cart?.length > 0 ? (
         cart.map((item , i) => (
           <>
@@ -202,7 +207,7 @@ const Cart = () => {
               marginTop: 10,
             }}
             onPress={() => {
-              navigation.navigate('Checkout');
+              handleAddToOrder()
             }
             }>
             <Text style={{color: '#fff', fontSize: 18}}>Checkout</Text>
@@ -211,26 +216,6 @@ const Cart = () => {
         :null
          }
            
-           {/* {(1 === 1)? 
-             
-                <View style={{alignItems: 'center'}}>
-                      <Text style={{fontSize: 24, fontWeight: 'bold'}}>
-                        Total Price: ${totalPrice.toFixed(2)}
-                      </Text>
-                      <TouchableOpacity
-                        style={{
-                          backgroundColor: '#00b894',
-                          paddingVertical: 10,
-                          paddingHorizontal: 20,
-                          borderRadius: 10,
-                          marginTop: 10,
-                        }}>
-                        <Text style={{color: '#fff', fontSize: 18}}>Checkout</Text>
-                      </TouchableOpacity>
-                    </View>
-              
-             :null
-          } */}
           </>
         ))
       ) : (
@@ -238,7 +223,6 @@ const Cart = () => {
       )}
     </ScrollView>
 
-    // <EmptyCart/>
   );
 };
 

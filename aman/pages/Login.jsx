@@ -25,7 +25,7 @@ export default function LoginSecrin({navigation}) {
   const {mutate, isLoadig} = useMutation(Login, {
     onSuccess: data => {
       persisLogin(data);
-      // console.log(data)
+      console.log(data)
       navigation.navigate('Nav',
       {
         screen: 'Home',

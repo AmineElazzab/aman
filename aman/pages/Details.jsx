@@ -32,8 +32,21 @@ const Details = ({route}) => {
   const handleAddToCart = async () => {
     const dataa = await addToCart(productId);
     console.log(dataa);
+    navigation.navigate('Cart');
   };
- 
+  
+  //quantity
+  // const [quantity, setQuantity] = useState(1);
+  // const handleIncrement = () => {
+  //   setQuantity(quantity + 1);
+  // };
+  // const handleDecrement = () => {
+  //   if (quantity > 1) {
+  //     setQuantity(quantity - 1);
+  //   }
+  // };
+
+
 
   return (
     <ScrollView
@@ -52,16 +65,15 @@ const Details = ({route}) => {
           //   marginTop: 10,
           margin: 10,
         }}>
-        <Image
-          source={{
-            uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdLDGIy5xG5Usvoc2b2gJlKMbVaq37tyfvWA&usqp=CAU',
-          }}
-          style={{
-            width: 400,
-            height: 500,
-            resizeMode: 'stretch',
-          }}
-        />
+         <Image
+              source={{uri: `http://192.168.9.20:5000/`+ (product?.image)}}
+              style={{
+                width: 150,
+                height: 150,
+                borderRadius: 30,
+                // marginTop: 10,
+              }}
+            />
       </View>
       <View
         style={{
@@ -128,9 +140,69 @@ const Details = ({route}) => {
           marginTop: 100,
           flexDirection: 'column',
         }}>
-          <TouchableOpacity>
-            
-          </TouchableOpacity>
+          
+            {/* <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            width: '100%',
+            marginBottom: 10,
+          }}>
+          <Text
+            style={{
+              fontWeight: 'bold',
+              fontSize: 20,
+              color: '#000',
+              textAlign: 'center',
+              justifyContent: 'center',
+            }}>
+            Quantity
+          </Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              width: '30%',
+            }}>
+            <TouchableOpacity onPress={handleDecrement}>
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: '#000',
+                  textAlign: 'center',
+                  justifyContent: 'center',
+                }}>
+                -
+              </Text>
+            </TouchableOpacity>
+            <Text
+              style={{
+                fontWeight: 'bold',
+                fontSize: 20,
+                color: '#000',
+                textAlign: 'center',
+                justifyContent: 'center',
+              }}>
+              {quantity}
+            </Text>
+            <TouchableOpacity onPress={handleIncrement}>
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  color: '#000',
+                  textAlign: 'center',
+                  justifyContent: 'center',
+                }}>
+                +
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View> */}
+          
         <TouchableOpacity
           onPress={handleAddToCart}
           style={{
