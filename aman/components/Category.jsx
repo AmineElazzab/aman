@@ -38,8 +38,8 @@ const Category = () => {
           <TouchableOpacity
           keyExtractor={item => `${item._id}-${item.index}`}
             onPress={() =>
-              navigation.navigate('App', {
-                screen: 'ProductbyCategory',
+              navigation.navigate('Nav', {
+                screen: 'Shop',
                 param: {categoryId: item._id},
               })
             }
