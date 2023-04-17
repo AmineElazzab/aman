@@ -137,7 +137,7 @@ const Home = () => {
           <Image source={home} style={{width: 160, height: '100%'}} />
         </View>
       </View>
-      <View
+      {/* <View
         style={{
           flexDirection: 'row',
           width: '100%',
@@ -179,7 +179,6 @@ const Home = () => {
             borderRadius: 10,
             justifyContent: 'center',
           }}>
-          {/* <Image source={require('../assets/img/aman.png')} /> */}
           <Icon
             name="ios-filter"
             size={20}
@@ -187,7 +186,7 @@ const Home = () => {
             style={{alignSelf: 'center'}}
           />
         </View>
-      </View>
+      </View> */}
       <View
         style={{
           flexDirection: 'row',

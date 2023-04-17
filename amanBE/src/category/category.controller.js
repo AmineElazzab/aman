@@ -29,7 +29,16 @@ const AddCategory = asyncHandler(async (req, res) => {
         const category = await Category.create({
             name,
         })
-        res.json(category)
+        if (category) {
+            res.status(201).json({
+                _id: category._id,
+                name: category.name,
+            })
+        }
+        else {
+            res.status(400)
+            throw new Error('Invalid category data')
+        }
     }
     catch (error) {
         res.status(400)

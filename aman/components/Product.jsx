@@ -26,10 +26,7 @@ function Product() {
     return <Text>Error: {error.message}</Text>;
   }
 
-  const image = (string) => {
-    let str = string;
-   return str.replace(/\\/g, "/");
-  };
+
 
   
 
@@ -49,7 +46,7 @@ function Product() {
             style={{
               marginTop: 10,
               backgroundColor: '#FFF',
-              height: 188,
+              height: 210,
               width: 188,
               elevation: 2,
               borderRadius: 30,
@@ -61,7 +58,7 @@ function Product() {
               alignItems: 'center',
             }}>
             <Image
-              source={{uri: `http://192.168.9.20:5000/`+ image(item.image)}}
+              source={{uri: `http://192.168.9.20:5000/`+ (item.image)}}
               style={{
                 width: 150,
                 height: 150,
@@ -89,11 +86,11 @@ function Product() {
                 textAlign: 'center',
                 justifyContent: 'center',
               }}>
-              {item.price}
+              {item.price} dh
             </Text>
           </TouchableOpacity>
         )}
-        keyExtractor={item => item.id}
+        // keyExtractor={item => item.id}
         numColumns={2}
       />
     </View>

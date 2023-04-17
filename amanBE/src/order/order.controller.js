@@ -6,7 +6,9 @@ const asyncHandler = require('express-async-handler');
 
 //get all orders
 const GetOrders = asyncHandler(async (req, res) => {
-    const orders = await Order.find({});
+    const orders = await Order.find({})
+        .populate('product')
+        .populate('user');
     res.json(orders);
 }
 );
@@ -26,14 +28,14 @@ const GetOrderById = asyncHandler(async (req, res) => {
 
 //get order by user id
 const GetOrderByUserId = asyncHandler(async (req, res) => {
-    try{
-        const order = await Order.find({user: req.userId})
-        .populate('product')
-        .populate('user');
+    try {
+        const order = await Order.find({ user: req.userId })
+            .populate('product')
+            .populate('user');
         res.status(200).json(order);
     }
-    catch(err){
-        res.status(404).json({message: err.message});
+    catch (err) {
+        res.status(404).json({ message: err.message });
     }
 }
 );
@@ -60,7 +62,7 @@ const AddOrder = asyncHandler(async (req, res) => {
             user: req.userId,
             cart: cartId,
             product: cart.product,
-            
+
         });
         res.json(order);
     }

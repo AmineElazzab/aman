@@ -38,7 +38,7 @@ function App() {
                 name="Cart"
                 component={Cart}
                 options={{
-                    headerShown: true
+                    headerShown: false
                 }}
             />
             <HomeStack.Screen

@@ -52,12 +52,14 @@ const Order = () => {
             justifyContent: 'space-between',
             alignItems: 'center',
             padding: 10,
-            backgroundColor: '#fff',
+            backgroundColor: '#112B54',
           }}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Icon name="arrow-back" size={25} />
+            <Icon name="arrow-back" size={25} 
+            color="#fff"
+            />
           </TouchableOpacity>
-          <Text style={{fontSize: 20, fontWeight: 'bold'}}>My Orders</Text>
+          <Text style={{fontSize: 20, fontWeight: 'bold', color:"#fff"}}>My Orders</Text>
           <View />
 
         </View>

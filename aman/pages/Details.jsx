@@ -34,7 +34,7 @@ const Details = ({route}) => {
     console.log(dataa);
     navigation.navigate('Cart');
   };
-  
+
   //quantity
   // const [quantity, setQuantity] = useState(1);
   // const handleIncrement = () => {
@@ -45,8 +45,6 @@ const Details = ({route}) => {
   //     setQuantity(quantity - 1);
   //   }
   // };
-
-
 
   return (
     <ScrollView
@@ -65,15 +63,15 @@ const Details = ({route}) => {
           //   marginTop: 10,
           margin: 10,
         }}>
-         <Image
-              source={{uri: `http://192.168.9.20:5000/`+ (product?.image)}}
-              style={{
-                width: 150,
-                height: 150,
-                borderRadius: 30,
-                // marginTop: 10,
-              }}
-            />
+        <Image
+          source={{uri: `http://192.168.9.20:5000/` + product?.image}}
+          style={{
+            width: 300,
+            height: 300,
+            borderRadius: 30,
+            // marginTop: 10,
+          }}
+        />
       </View>
       <View
         style={{
@@ -127,21 +125,32 @@ const Details = ({route}) => {
             textAlign: 'center',
             justifyContent: 'center',
           }}>
-          {product?.price}
+          {product?.price} dh
         </Text>
       </View>
       <View
         style={{
           flex: 1,
-          justifyContent: 'flex-end',
-          alignItems: 'center',
+          justifyContent: 'flex-start',
+          alignItems: 'flex-start',
           // backgroundColor: '#000',
           marginHorizontal: 10,
-          marginTop: 100,
+          marginTop: 80,
+          marginBottom: 20,
           flexDirection: 'column',
         }}>
-          
-            {/* <View
+        <Text
+          style={{
+            // fontWeight: 'bold',
+            fontSize: 20,
+            color: '#000',
+            // textAlign: 'center',
+            justifyContent: 'flex-start',
+          }}>
+          {product?.description}
+        </Text>
+
+        {/* <View
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -202,30 +211,42 @@ const Details = ({route}) => {
             </TouchableOpacity>
           </View>
         </View> */}
-          
-        <TouchableOpacity
-          onPress={handleAddToCart}
+        <View
           style={{
-            backgroundColor: '#000',
-            height: 50,
+            // flex:1,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
             width: '100%',
-            elevation: 2,
-            borderRadius: 30,
-            // padding: 15,
-            marginRight: 10,
-            marginLeft: 2,
+            height: '30%',
             marginBottom: 10,
+            // backgroundColor: '#000',
+            marginTop: 30,
           }}>
-          <Text
+          <TouchableOpacity
+            onPress={handleAddToCart}
             style={{
-              color: '#FFF',
-              textAlign: 'center',
-              justifyContent: 'center',
-              marginTop: 10,
+              backgroundColor: '#000',
+              height: 50,
+              width: '100%',
+              elevation: 2,
+              borderRadius: 30,
+              // padding: 15,
+              marginRight: 10,
+              marginLeft: 2,
+              marginBottom: 10,
             }}>
-            Add to Cart
-          </Text>
-        </TouchableOpacity>
+            <Text
+              style={{
+                color: '#FFF',
+                textAlign: 'center',
+                justifyContent: 'center',
+                marginTop: 10,
+              }}>
+              Add to Cart
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </ScrollView>
   );

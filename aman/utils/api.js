@@ -2,7 +2,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-const URL = 'http://192.168.1.104:5000';
+const URL = 'http://192.168.9.20:5000';
 
 
 export async function Login({
@@ -120,7 +120,7 @@ export async function getOrderByUserId() {
 
 export async function addOrder() {
     const token = await AsyncStorage.getItem("token")
-    const response = await axios.post(`${URL}/api/order/addOrder`, {
+    const response = await axios.post(`${URL}/api/order/addOrder/6433db5b126cad20a63089f2`, {
         headers: {
             Authorization: `Bearer ${token}`
         }

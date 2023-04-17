@@ -21,13 +21,15 @@ const Shop = () => {
             justifyContent: 'space-between',
             alignItems: 'center',
             padding: 10,
-            backgroundColor: '#fff',
+            backgroundColor: '#112B54',
             width: '100%',
           }}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Icon name="arrow-back" size={25} />
+            <Icon name="arrow-back" size={25} 
+            style={{color:"#fff"}}
+            />
           </TouchableOpacity>
-          <Text style={{fontSize: 20, fontWeight: 'bold'}}>Profile</Text>
+          <Text style={{fontSize: 20, fontWeight: 'bold', color:"#fff"}}>Shop</Text>
           <View />
 
         </View>
@@ -37,6 +39,7 @@ const Shop = () => {
           width: '100%',
           alignItems: 'center',
           paddingHorizontal: 5,
+          marginBottom:100
         }}>
         
         <Product />

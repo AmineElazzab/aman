@@ -41,7 +41,7 @@ import EmptyCart from '../components/EmptyCart';
   const calculateTotalPrice = useCallback(() => {
     let totalPrice = 0;
     cart.forEach(item => {
-      totalPrice += item.product.price;
+      totalPrice += item.product?.price;
     });
     setTotalPrice(totalPrice);
   }, [cart]);
@@ -53,7 +53,7 @@ import EmptyCart from '../components/EmptyCart';
  
   // DeleteCartItem
   const DeleteCartItem = id => {
-    fetch(`http://192.168.1.104:5000/api/cart/deleteCartItem/${id}`, {
+    fetch(`http://192.168.9.20:5000/api/cart/deleteCartItem/${id}`, {
       method: 'DELETE',
     })
       .then(res => res.json())
@@ -74,6 +74,7 @@ import EmptyCart from '../components/EmptyCart';
 const handleAddToOrder = async () => {
     try {
       const data = await addOrder();
+
       console.log(data);
       ToastAndroid.show('Order Placed', ToastAndroid.SHORT);
       navigation.navigate('Order');

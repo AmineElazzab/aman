@@ -7,6 +7,7 @@ import {
   RefreshControl,
   Button,
   Pressable,
+  TouchableOpacity
 } from 'react-native';
 import React, {useContext} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -30,8 +31,25 @@ const User = () => {
   };
 
   return (
-   
+   <>
+    <View
+    style={{
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: 10,
+      backgroundColor: '#112B54',
+      width: '100%',
+    }}>
+    <TouchableOpacity onPress={() => navigation.goBack()}>
+      <Icon name="arrow-back" size={25} 
+      style={{color:"#fff"}}
+      />
+    </TouchableOpacity>
+    <Text style={{fontSize: 20, fontWeight: 'bold', color:"#fff"}}>Profil</Text>
+    <View />
 
+  </View>
     <View
       style={{
         flex: 1,
@@ -131,7 +149,7 @@ const User = () => {
       </Pressable>
       <Pressable
             onPress={() => navigation.navigate("App",
-            {screen: "About"})}
+            {screen: "Contact"})}
           style={{
             flexDirection: 'row',
             alignItems: 'center',
@@ -225,6 +243,7 @@ const User = () => {
       </View>
       </Pressable>
     </View>
+    </>
   );
 };
 
