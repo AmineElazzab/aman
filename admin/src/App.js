@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 // import Register from './pages/Register';
 import Dashboard from './pages/admin/Dashboard';
 import AddProduct from './pages/admin/AddProduct'
+import AddCategory from './pages/admin/AddCategory'
 import E404 from './pages/admin/404';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/add-product" element={<AddProduct />} />
+          <Route path="/add-category" element={<AddCategory />} />
           <Route path="*" element={<E404 />} />
         </Routes>
       </Router>
