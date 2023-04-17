@@ -85,15 +85,23 @@ function AddProduct() {
 
           </ul>
         </div>
-        {/* <div className="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
-          <button   className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-            </svg>
-            <span className="group-hover:text-gray-700">Logout</span>
-          </button>
-        </div> */}
+       
       </aside>
+      <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
+        <div className="py-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+            <h1 className="text-2xl font-semibold text-gray-900">Add Product</h1>
+          </div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+            {/* Replace with your content */}
+            <div className="py-4">
+              </div>
+            </div>
+            {/* /End replace */}
+          </div>
+
+      </main>
+
     <div className="container mx-auto my-8 px-4">
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
         <div className="md:flex">
@@ -141,7 +149,7 @@ function AddProduct() {
                 Description:
                 </label>
                 <div className="mt-1">
-                  <input
+                  <textarea 
                     type="text"
                     name="description"
                     id="description"
@@ -181,22 +189,22 @@ function AddProduct() {
                 </div>
               </div>
               <div className="mt-6">
-                <label htmlFor="spot-image" className="block text-sm font-medium text-gray-700">
-                  Spot image:
+                <label htmlFor="image" className="block text-sm font-medium text-gray-700">
+                   image:
                 </label>
                 <div className="mt-1">
                   <input
                     type="file"
-                    name="spot-image"
-                    id="spot-image"
+                    name="image"
+                    id="image"
                     required
                     className="shadow-sm focus:ring focus:border-blue-300 block w-full sm:text-sm border-gray-300 rounded-md"
                     onChange={(e) => setFile(e.target.files[0])}
                   />
                 </div>
               </div>
-              {!isPending && <button className="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Spot</button>}
-              {isPending && <button className="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" disabled>Adding Spot...</button>}
+              {!isPending && <button className="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Product</button>}
+              {isPending && <button className="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" disabled>Adding Product...</button>}
             </form>
           </div>
         </div>
